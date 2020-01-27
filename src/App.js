@@ -1,27 +1,32 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import Item from './Item';
+import productData from'./react-voting-app-data.json';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    // state = {
-    // }     
+    this.state = {
+      jsonData: productData
+    }
   }
 
   render() {
+    let productData= this.state.jsonData
+
     return(
       <div className='main-container'>
         <Header />
-        <Item productName='Water' voteCount='0' producedBy='Dasani' year='2017' />
-        <Item productName='Coffee' voteCount='0' producedBy='Tim' year='2017'/>
+        {/* display all products */}
+        {productData.map(product => {
+          return <Item id={product.id} productName={product.productName} voteCount={product.votes} description={product.description} productImgUrl={product.productImgUrl} />
+        })}
       </div>
     )
   }
 }
+
 export default App;
-
-
 // header => title
 // item component
 // extra, add component
