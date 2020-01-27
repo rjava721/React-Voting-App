@@ -1,30 +1,44 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'; 
 
 
-const Item = (props) => {
-  return (
-    <div className='item-container' id={props.id}>
+class Item extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      voteAmount: this.props.voteCount
+    }
+  }
 
-      <div className='left-item-container'>
-        <img src={props.productImgUrl} width='150px' height='150px'></img>
-      </div>
+updateVote = () => {
+  console.log('update vote count');
+  let votesPlaceholder = this.state.voteAmount;
+  console.log(votesPlaceholder);
+  votesPlaceholder++;
+  this.setState({voteAmount: votesPlaceholder})
+}
 
-      <div className='right-item-container'>
-        <div>
-          <a onClick={updateVote}>+</a>
-          <span>{props.votest}</span>
+  render() {
+    return (
+      <div className='item-container' key={this.props.id}>
+
+        <div className='left-item-container'>
+          <img src={this.props.productImgUrl} width='150px' height='150px'></img>
         </div>
 
-        <p><a href='#'>{props.productName}</a></p>
-        <p>{props.description}</p>
-        <p>Submitted By : <img className='profile-picture' src='www.glas.com' alt='pic'></img></p>
+        <div className='right-item-container'>
+          <div>
+            <a onClick={this.updateVote}>+</a>
+            <span>{this.state.voteAmount}</span>
+          </div>
+
+          <p><a href='#'>{this.props.productName}</a></p>
+          <p>{this.props.description}</p>
+          <p>Submitted By : <img className='profile-picture' href={this.props.avatarImg} alt='pic'></img></p>
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 export default Item;
 
-const updateVote = () => {
-  console.log('update vote count');
-}

@@ -19,7 +19,7 @@ class App extends Component {
         <Header />
         {/* display all products */}
         {productData.map(product => {
-          return <Item id={product.id} productName={product.productName} voteCount={product.votes} description={product.description} productImgUrl={product.productImgUrl} />
+          return <Item id={product} productName={product.productName} voteCount={product.votes} description={product.description} productImgUrl={product.productImgUrl} avatarImg={product.productImgUrl} />
         })}
       </div>
     )
