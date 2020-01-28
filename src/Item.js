@@ -4,22 +4,11 @@ import React, { Component } from 'react';
 class Item extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      voteAmount: this.props.voteCount
-    }
   }
-
-updateVote = () => {
-  console.log('update vote count');
-  let votesPlaceholder = this.state.voteAmount;
-  console.log(votesPlaceholder);
-  votesPlaceholder++;
-  this.setState({voteAmount: votesPlaceholder})
-}
 
   render() {
     return (
-      <div className='item-container' key={this.props.id}>
+      <div className='item-container'>
 
         <div className='left-item-container'>
           <img src={this.props.productImgUrl} width='150px' height='150px'></img>
@@ -27,13 +16,13 @@ updateVote = () => {
 
         <div className='right-item-container'>
           <div>
-            <a onClick={this.updateVote}>+</a>
-            <span>{this.state.voteAmount}</span>
+            <a className='increment-arrow' id={this.props.id} onClick={this.props.onClick}>↑ </a>
+            <span>{this.props.voteCount}</span>
           </div>
 
           <p><a href='#'>{this.props.productName}</a></p>
           <p>{this.props.description}</p>
-          <p>Submitted By : <img className='profile-picture' href={this.props.avatarImg} alt='pic'></img></p>
+          <p>Submitted By : <img className='profile-picture' src={this.props.avatarImgUrl} alt='pic'></img></p>
         </div>
       </div>
     )
